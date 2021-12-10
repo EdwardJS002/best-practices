@@ -116,8 +116,21 @@ import { MongooseModule } from '@nestjs/mongoose';
 		ConfigModule.forRoot({
 			envFilePath: `env/${process.env.NODE_ENV}.env`,
 		}),
-		MongooseModule.forRoot('mongodb://localhost/nest'),
+		MongooseModule.forRoot(
+			`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_DATABASE_URL}/${process.env.MONGODB_DATABASE}`
+		),
 	],
 })
 export class AppModule {}
+```
+
+#### 3- Define your Schemas
+
+Structure for defining schemas. Exemples with a "user" module.
+
+```
+/src
+--- users/
+--------- schemas/
+------------------ user.schemas.ts
 ```
