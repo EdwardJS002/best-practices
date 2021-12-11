@@ -132,5 +132,28 @@ Structure for defining schemas. Exemples with a "user" module.
 /src
 --- users/
 --------- schemas/
------------------- user.schemas.ts
+------------------ user.schema.ts
+```
+
+the following schema :
+
+```ts
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
+
+export type UserDocument = User & Document;
+
+@Schema()
+export class User {
+	@Prop({ required: true })
+	email: string;
+
+	@Prop()
+	firstname: string;
+
+	@Prop()
+	password: string;
+}
+
+export const UserSchema = SchemaFactory.createForClass(User);
 ```
